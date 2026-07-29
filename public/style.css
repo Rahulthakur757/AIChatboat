@@ -87,7 +87,7 @@ body{
 .power-section{
     width:380px;
     margin-right:30px;
-    transform:translateX(-100px);
+    transform:translateX(0px);
     position:sticky;
     top:180px;
     border-radius:24px;
