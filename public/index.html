@@ -287,12 +287,30 @@
             display: flex;
             flex-direction: column;
 
-            margin-left: auto;
+            margin-left: 370px;
+            margin-right: auto;
             overflow: hidden;
 
             box-shadow: 0 15px 35px rgba(0, 0, 0, .12);
 
         }
+
+        /* Chat Container Base Styling */
+.chat-container {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform-origin: bottom right;
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1) translateY(0);
+}
+
+/* Jab Chat Close ho tab ye styles apply honge */
+.chat-container.collapsed {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.8) translateY(30px);
+    pointer-events: none;
+}
 
         /* ==========================
    HEADER
@@ -878,7 +896,7 @@
         </div>
     </div>
 
-    <div class="chat-container">
+    <div class="chat-container collapsed">
 
         <div class="header">
             <div class="brand">
@@ -897,14 +915,14 @@
         <div class="chat-area" id="chat">
 
             <div class="bot">
-                <p>👋I'm your AI College Assistant. I am available 24/7 to help you.
+                <p>👋I'm your AI NTPC Assistant. I am available 24/7 to help you.
                 </p>
             </div>
 
         </div>
 
         <form class="input-area" id="chatForm">
-            <input id="input" type="text" placeholder="Ask your college related question..." autocomplete="off"
+            <input id="input" type="text" placeholder="Ask your NTPC related question..." autocomplete="off"
                 required>
 
             <button type="submit" id="sendBtn">
