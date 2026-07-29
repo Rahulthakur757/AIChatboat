@@ -3,6 +3,19 @@ console.log("script.js loaded");
 const chat = document.getElementById("chat");
 const chatForm = document.getElementById("chatForm");
 const input = document.getElementById("input");
+const dateElement = document.getElementById("headerDate");
+
+
+// Auto Current Date
+const today = new Date();
+
+const options = {
+    day: "2-digit",
+    month: "short",
+    year: "numeric"
+};
+
+dateElement.textContent = today.toLocaleDateString("en-GB", options);
 
 // Scroll to Bottom
 function scrollBottom() {
@@ -209,7 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Tooltip text change karein
         if (chatContainer.classList.contains("collapsed")) {
-            if (mascotCloud) mascotCloud.textContent = "Talk to Chatur";
+            if (mascotCloud) mascotCloud.textContent = "Talk to AI";
         } else {
             if (mascotCloud) mascotCloud.textContent = "Close Chat ✖";
             // Open hone par input field par auto-focus ho jayega
@@ -229,3 +242,4 @@ document.addEventListener("DOMContentLoaded", () => {
         mascotCloud.addEventListener("click", toggleChat);
     }
 });
+
