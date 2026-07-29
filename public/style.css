@@ -160,7 +160,7 @@ body{
     pointer-events: none;
 
     /* Mascot ki taraf shrink hoga */
-    transform: scale(.2) translate(220px,120px);
+    /* transform: scale(.2) translate(220px,120px); */
 }
 
 
