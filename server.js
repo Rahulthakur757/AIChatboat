@@ -1,72 +1,3 @@
-// require("dotenv").config();
-
-// const OpenAI = require("openai");
-
-// const client = new OpenAI({
-//     apiKey: process.env.OPENAI_API_KEY
-// });
-
-// const express = require("express");
-
-// const app = express();
-
-// app.use(express.static("public"));
-
-
-
-
-
-// const PORT = process.env.PORT || 3000;
-
-
-// app.use(express.json());
-
-
-// app.get("/", (req, res) => {
-//     res.sendFile(__dirname + "/public/index.html");
-// });
-
-// app.post("/api/chat", async (req, res) => {
-//     try {
-//         const { message } = req.body;
-
-//         const response = await client.responses.create({
-//             model: process.env.OPENAI_MODEL,
-//             input: message
-//         });
-
-//         res.json({
-//             success: true,
-//             reply: response.output_text
-//         });
-
-//     } catch (error) {
-//         console.error(error);
-
-//         res.status(500).json({
-//             success: false,
-//             error: error.message
-//         });
-//     }
-// });
-
-// app.listen(PORT, (err) => {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         console.log(` Core Server engine deployed on: http://localhost:${PORT}`); 
-//     }
-// })
-
-
-
-
-
-
-
-
-
-
 require("dotenv").config();
 
 const express = require("express");
@@ -81,29 +12,24 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-// -------------------- OpenAI --------------------
 
 const client = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
 
-// -------------------- Middleware --------------------
 
 app.use(express.json());
 app.use(express.static("public"));
 
-// -------------------- Global Variables --------------------
 
 let allChunks = [];
 let vectorStore = [];
 
-// -------------------- Home Route --------------------
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/public/index.html");
 });
 
-// -------------------- Chat Route --------------------
 
 app.post("/api/chat", async (req, res) => {
 
@@ -133,21 +59,21 @@ app.post("/api/chat", async (req, res) => {
 
         // Prompt
         const prompt = `
-You are College Mitra AI.
+You are NTPC Mitra AI.
 
-Answer ONLY using the college knowledge below.
+Answer ONLY using the NTPC knowledge below.
 
 Rules:
 1. Do not make up answers.
 2. Use simple English.
 3. If the answer is not available, reply:
-"I don't have this information."
+"Sorry, I couldn't find this information in my knowledge base."
 
-College Knowledge:
+NTPC Knowledge:
 
 ${context.map(item => item.text).join("\n\n")}
 
-Student Question:
+NTPC Question:
 
 ${message}
 
@@ -192,7 +118,7 @@ Answer:
 
     try {
 
-        console.log("\nLoading College Knowledge...\n");
+        console.log("\nLoading NTPC Knowledge...\n");
 
         const docs = await readAllPDFs();
 
@@ -224,7 +150,7 @@ Answer:
 
         console.log("Total Vectors:", vectorStore.length);
 
-        console.log("\nCollege AI is Ready.\n");
+        console.log("\nNTPC AI is Ready.\n");
 
     } catch (err) {
 

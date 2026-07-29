@@ -158,9 +158,6 @@ body{
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-
-    /* Mascot ki taraf shrink hoga */
-    /* transform: scale(.2) translate(220px,120px); */
 }
 
 
@@ -393,16 +390,6 @@ body{
 
     transform:scale(1.03);
 }
-
-
-
-
-
-
-
-
-
-
 /* =====================================================
    MASCOT
 ===================================================== */
