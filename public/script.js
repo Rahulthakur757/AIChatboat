@@ -164,13 +164,12 @@ if (mascot && chatContainer) {
     mascot.addEventListener('click', () => {
         console.log('mascot clicked — toggling chat collapse');
 
-        const isHidden = chatContainer.classList.contains('hidden');
+      
         const isCollapsed = chatContainer.classList.contains('collapsed');
 
         // If currently hidden/closed -> open it with transition
         if (isHidden || isCollapsed) {
-            // reveal from display:none first
-            chatContainer.classList.remove('hidden');
+            
 
             // allow the browser one frame to register the removal, then remove collapsed to play transition
             requestAnimationFrame(() => {
@@ -211,34 +210,82 @@ if (mascot && chatContainer) {
 
 
 
+// document.addEventListener("DOMContentLoaded", () => {
+//     const chatContainer = document.querySelector(".chat-container");
+//     const mascot = document.querySelector(".mascot");
+//     const mascotCloud = document.querySelector(".mascot-cloud");
+
+//     // Mascot ya Message Cloud par click karne par chat toggle hoga
+//     function toggleChat() {
+//         chatContainer.classList.toggle("collapsed");
+
+//         // Tooltip text change karein
+//         if (chatContainer.classList.contains("collapsed")) {
+//             if (mascotCloud) mascotCloud.textContent = "Talk to AI";
+//         } else {
+//             if (mascotCloud) mascotCloud.textContent = "Close Chat ✖";
+//             // Open hone par input field par auto-focus ho jayega
+//             const inputField = document.getElementById("input");
+//             if (inputField) inputField.focus();
+//         }
+//     }
+
+//     // Event Listeners
+//     if (mascot) {
+//         mascot.addEventListener("click", toggleChat);
+//     }
+    
+//     if (mascotCloud) {
+//         mascotCloud.style.pointerEvents = "auto"; // Cloud ko bhi clickable banayein
+//         mascotCloud.style.cursor = "pointer";
+//         mascotCloud.addEventListener("click", toggleChat);
+//     }
+// });
+
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const chatContainer = document.querySelector(".chat-container");
     const mascot = document.querySelector(".mascot");
     const mascotCloud = document.querySelector(".mascot-cloud");
+    const inputField = document.getElementById("input");
 
-    // Mascot ya Message Cloud par click karne par chat toggle hoga
+    // Initially chat closed
+    chatContainer.classList.add("collapsed");
+    if (mascotCloud) {
+        mascotCloud.textContent = "Talk to AI";
+        mascotCloud.style.pointerEvents = "auto";
+        mascotCloud.style.cursor = "pointer";
+    }
+
     function toggleChat() {
         chatContainer.classList.toggle("collapsed");
 
-        // Tooltip text change karein
         if (chatContainer.classList.contains("collapsed")) {
-            if (mascotCloud) mascotCloud.textContent = "Talk to AI";
+            // Chat Closed
+            if (mascotCloud) {
+                mascotCloud.textContent = "Talk to AI";
+            }
         } else {
-            if (mascotCloud) mascotCloud.textContent = "Close Chat ✖";
-            // Open hone par input field par auto-focus ho jayega
-            const inputField = document.getElementById("input");
-            if (inputField) inputField.focus();
+            // Chat Open
+            if (mascotCloud) {
+                mascotCloud.textContent = "Close Chat ✖";
+            }
+
+            if (inputField) {
+                inputField.focus();
+            }
         }
     }
 
-    // Event Listeners
+    // Mascot Click
     if (mascot) {
         mascot.addEventListener("click", toggleChat);
     }
-    
+
+    // Cloud Click
     if (mascotCloud) {
-        mascotCloud.style.pointerEvents = "auto"; // Cloud ko bhi clickable banayein
-        mascotCloud.style.cursor = "pointer";
         mascotCloud.addEventListener("click", toggleChat);
     }
 });

@@ -124,43 +124,46 @@ body{
 
 .chat-container{
     flex: 1;
-
     width: 100%;
-    max-width: 550px;   /* Pehle 820px tha */
-
-    height: 80vh;       /* Pehle 88vh tha */
-
+    max-width: 550px;
+    height: 80vh;
     min-width: 0;
 
     background: #eaf9ff;
-
     border-radius: 20px;
 
     display: flex;
     flex-direction: column;
-
     overflow: hidden;
 
     position: relative;
-
     z-index: 5;
 
     box-shadow: 0 15px 35px rgba(0,0,0,.12);
 
+    /* Initial State */
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1) translateY(0);
+    transform-origin: bottom right;
+
     transition:
+        opacity .35s ease,
         transform .45s cubic-bezier(.2,.9,.2,1),
-        opacity .35s ease;
+        visibility .35s;
 }
 
+/* Closed State */
 .chat-container.collapsed{
-    transform:translateY(18px) scale(.18);
-    opacity:0;
-    pointer-events:none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    /* Mascot ki taraf shrink hoga */
+    transform: scale(.2) translate(220px,120px);
 }
 
-.chat-container.hidden{
-    display:none;
-}
+
 
 /* =====================================================
    CHAT HEADER
@@ -716,21 +719,33 @@ font-size:14px;
 
 .mascot{
 
-width:70px;
+width:60px;
 
-height:70px;
+height:60px;
 
-right:15px;
+right:10px;
 
-bottom:15px;
+bottom:100px;
 
 }
 
 .mascot-cloud{
 
 display:none;
+right:75px;      /* mascot ke left me */
+        bottom:20px;
+        padding:8px 12px;
+        font-size:12px;
+        max-width:110px;
+        white-space:nowrap;
 
 }
+
+.mascot-cloud::after{
+        right:-8px;
+        width:14px;
+        height:14px;
+    }
 
 }
 
